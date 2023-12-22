@@ -1,3 +1,9 @@
 <h1> Explore Bricks </h1>
 
+<% @bricks.each do |brick| %>
+  <%= link_to brick_path(brick) do %>
+    <%= brick.name %>
+  <% end %>
+<% end %>
+
 <%= link_to "add brick", new_brick_path %>

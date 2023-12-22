@@ -1,4 +1,5 @@
-<h1> Brick Name </h1>
+<h1> <%= @brick.name %> </h1>
 
 <%= link_to "edit this brick", edit_brick_path  %>
-<%= render "delete this brick", brick_path %>
+
+<%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
