@@ -1,0 +1,5 @@
+<% @bricks.each do |brick| %>
+  <%= link_to brick_path(brick) do %>
+    <%= brick.name %>
+  <% end %>
+<% end %>

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :bricks
+
+  get "brickfolio", to: "users#show", as: "brickfolio"
 end
