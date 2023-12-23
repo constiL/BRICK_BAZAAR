@@ -1,0 +1,3 @@
+<%= simple_form_for(@brick, @buy_request) do |f| %>
+  <%= f.submit @brick.persisted? ? "Update Brick" : "Add Brick" %>
+<% end %>
