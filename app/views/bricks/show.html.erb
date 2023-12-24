@@ -4,4 +4,7 @@
 
 <%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 
-
+<%= simple_form_for [@brick, @buy_request] do |f| %>
+  <%= f.input :accepted %>
+  <%= f.submit "Buy", class: "btn" %>
+<% end %>
