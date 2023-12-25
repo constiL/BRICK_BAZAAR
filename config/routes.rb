@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :bricks do
-    resources :buy_requests, only: %i[create destroy]
   end
 
   get "brickfolio", to: "users#show", as: "brickfolio"
