@@ -1,10 +1,13 @@
 <h1> <%= @brick.name %> </h1>
+<ul>
+  <li>Description: <%= @brick.description %></li>
+  <li>City: <%= @brick.city %></li>
+  <li>Address: <%= @brick.address %></li>
+  <li>Price: <%= @brick.price %></li>
+  <li>Condition: <%= @brick.brick_condition %></li>
+  <li>Colour: <%= @brick.colour %></li>
+</ul>
 
 <%= link_to "edit this brick", edit_brick_path  %>
-
+<br>
 <%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-
-<%= simple_form_for [@brick, @buy_request] do |f| %>
-  <%= f.input :accepted %>
-  <%= f.submit "Buy", class: "btn" %>
-<% end %>
