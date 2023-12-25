@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_22_181240) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_25_133353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,16 +28,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_22_181240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bricks_on_user_id"
-  end
-
-  create_table "buy_requests", force: :cascade do |t|
-    t.boolean "accepted"
-    t.bigint "brick_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["brick_id"], name: "index_buy_requests_on_brick_id"
-    t.index ["user_id"], name: "index_buy_requests_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -64,8 +54,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_22_181240) do
   end
 
   add_foreign_key "bricks", "users"
-  add_foreign_key "buy_requests", "bricks"
-  add_foreign_key "buy_requests", "users"
   add_foreign_key "messages", "bricks"
   add_foreign_key "messages", "users"
 end

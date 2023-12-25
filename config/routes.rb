@@ -9,4 +9,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :bricks do
+  end
+
+  get "brickfolio", to: "users#show", as: "brickfolio"
 end
