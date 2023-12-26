@@ -7,17 +7,15 @@ class BuyRequestsController < ApplicationController
     @buy_request.brick = @brick
     @buy_request.user = current_user
     if @buy_request.save
-      redirect_to bricks_path, notice: "Buy Request created"
+      redirect_to brick_path(@brick), notice: "Buy Request created"
     else
       redirect_to brick_path, notice: "failure"
     end
   end
 
   def destroy
-    @buy_requests = BuyRequest.find(params[:id])
-    @brick = @buy_request.brick
-    if @buy_request.destroy!
-      redirect_to bricks_path, notice: "Buy Request was successfully destroyed", status: :see_other
-    else
+    @buy_request = BuyRequest.find(params[:id])
+    @buy_request.destroy!
+    redirect_to brick_path, notice: "Buy Request was successfully destroyed", status: :see_other
   end
 end

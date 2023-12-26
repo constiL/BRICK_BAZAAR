@@ -13,4 +13,5 @@
 <% end %>
 
 <% @buy_requests.each do |buy_request| %>
-  <%= link_to "Cancel",  %>
+  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  %>
+<% end %>
