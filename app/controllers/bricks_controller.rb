@@ -8,6 +8,7 @@ class BricksController < ApplicationController
 
   def show
     # @buy_request = BuyRequest.new
+    @buy_request = BuyRequest.new
   end
 
   def new
