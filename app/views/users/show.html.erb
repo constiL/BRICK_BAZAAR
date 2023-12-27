@@ -13,18 +13,8 @@
 <% end %>
 <br>
 <% @buy_requests.each do |buy_request| %>
-  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete }, class: "btn border" %>
-  <br>
-<% end %>
-
-<% @buy_requests.each do |buy_request| %>
-  <%= simple_form_for buy_request, url: accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'accepted' } %>
-    <%= f.submit "Accept", class: "btn border" %>
-  <% end %>
-
- <%= simple_form_for buy_request, url: reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
-    <%= f.submit "Reject", class: "btn border" %>
+  <% if buy_request.status == "pending" %>
+    <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
+    <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>

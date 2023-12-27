@@ -36,11 +36,9 @@ class BuyRequestsController < ApplicationController
   end
 
   def reject
-    if @buy_request.update(status: 'rejected')
-      redirect_to brickfolio_path, notice: 'Buy request rejected'
-    else
-      redirect_to brickfolio_path, alert: 'Failed to reject buy request'
-    end
+    @buy_request.update(status: "rejected")
+    @buy_request.destroy!
+    redirect_to brickfolio_path, notice: "Buy Request has been rejected"
   end
 
   private
