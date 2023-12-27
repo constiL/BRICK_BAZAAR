@@ -1,6 +1,6 @@
 class BuyRequest < ApplicationRecord
   validates :user, :brick, presence: true
-  validates :user_id, uniqueness: {scope: :brick_id, notice: "Only one request per brick"}
+  validates :user_id, uniqueness: { scope: :brick_id, message: "You can only make one request per brick" }
 
   belongs_to :user
   belongs_to :brick

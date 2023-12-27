@@ -12,8 +12,10 @@ Rails.application.routes.draw do
 
   resources :bricks do
     resources :buy_requests, only: %i[create update] do
-      patch :accept
-      patch :decline
+      member do
+        patch :accept
+        patch :reject
+      end
     end
   end
 

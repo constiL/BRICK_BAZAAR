@@ -1,6 +1,6 @@
 class BuyRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_buy_request, only: %i[update destroy accept]
+  before_action :set_buy_request, only: %i[update destroy accept reject]
 
   def create
     @brick = Brick.find(params[:brick_id])
@@ -15,7 +15,11 @@ class BuyRequestsController < ApplicationController
   end
 
   def update
-    @buy_request.accept
+    if @buy_request.update(buy_request_params)
+      redirect_to brickfolio_path, notice: "Buy request has been accepted"
+    else
+      redirect to brickfolio_path, notice: "Failure"
+    end
   end
 
   def destroy
@@ -24,10 +28,18 @@ class BuyRequestsController < ApplicationController
   end
 
   def accept
-    if @buy_request.accepted!
-      redirect_to @brick, notice: "Buy request accepted"
+    if @buy_request.update(status: 'accepted')
+      redirect_to brickfolio_path, notice: 'Buy request accepted'
     else
-      redirect_to @offer, notice: 'Offer could not be accepted - please try again'
+      redirect_to brickfolio_path, alert: 'Failed to accept buy request'
+    end
+  end
+
+  def reject
+    if @buy_request.update(status: 'rejected')
+      redirect_to brickfolio_path, notice: 'Buy request rejected'
+    else
+      redirect_to brickfolio_path, alert: 'Failed to reject buy request'
     end
   end
 
