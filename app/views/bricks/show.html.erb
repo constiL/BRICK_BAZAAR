@@ -15,6 +15,7 @@
 <br>
 <br>
 <%= simple_form_for [@brick, @buy_request] do |f| %>
+  <%= f.hidden_field :status %>
   <%= f.submit "Request", class: "btn border" %>
 <% end %>
 <br>

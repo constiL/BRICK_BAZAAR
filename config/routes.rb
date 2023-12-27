@@ -11,15 +11,13 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :bricks do
-    resources :buy_requests, only: %i[create]
-  end
-
-  resources :buy_requests, only: [] do
-    patch :accept
-    patch :decline
+    resources :buy_requests, only: %i[create update] do
+      patch :accept
+      patch :decline
+    end
   end
 
   resources :buy_requests, only: %i[destroy]
-  
+
   get "brickfolio", to: "users#show", as: "brickfolio"
 end
