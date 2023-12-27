@@ -8,6 +8,18 @@
   <li>Colour: <%= @brick.colour %></li>
 </ul>
 
-<%= link_to "edit this brick", edit_brick_path  %>
+<%= link_to "back", bricks_path, class: "btn border" %>
 <br>
-<%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<br>
+<%= simple_form_for [@brick, @buy_request] do |f| %>
+  <%= f.hidden_field :status %>
+  <%= f.submit "Request", class: "btn border" %>
+<% end %>
+<% @brick.buy_requests.each do |buy_request| %>
+  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete }, class:"btn border"  %>
+<% end %>
+<br>
+<%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
+<br>
+<br>
+<%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn border" %>
