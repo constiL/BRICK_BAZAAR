@@ -15,3 +15,7 @@
 <%= simple_form_for [@brick, @buy_request] do |f| %>
   <%= f.submit "Buy", class: "btn" %>
 <% end %>
+<br>
+<% @brick.buy_requests.each do |buy_request| %>
+  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  %>
+<% end %>
