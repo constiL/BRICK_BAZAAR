@@ -7,9 +7,9 @@ class BuyRequestsController < ApplicationController
     @buy_request.brick = @brick
     @buy_request.user = current_user
     if @buy_request.save
-      redirect_to brick_path(@brick), notice: "Buy Request created"
+      redirect_to brick_path(@brick), notice: "Buy request created"
     else
-      redirect_to brick_path, notice: "failure"
+      redirect_to brick_path(@brick), notice: "Already made a buy request"
     end
   end
 
