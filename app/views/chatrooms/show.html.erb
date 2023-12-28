@@ -1,0 +1,17 @@
+<h1><%= @brick.name %></h1>
+
+<div class="messages">
+  <% @chatroom.messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
+</div>
+<%= simple_form_for [@brick, @chatroom, @message],
+  html: {data: "d-flex"} do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Write a message",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+<% end %>

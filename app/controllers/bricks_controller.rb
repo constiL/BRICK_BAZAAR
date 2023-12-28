@@ -8,6 +8,7 @@ class BricksController < ApplicationController
 
   def show
     @buy_request = BuyRequest.new
+    @chatroom = Chatroom.new
     @message = Message.new
   end
 
