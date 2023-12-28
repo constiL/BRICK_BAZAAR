@@ -8,11 +8,12 @@ class ChatroomsController < ApplicationController
   def create
     @brick = Brick.find(params[:brick_id])
     @seller = @brick.user
-    @chatroom = Chatroom.find_by(buyer: current_user.id, seller: @seller)
+    @chatroom = Chatroom.new(brick: @brick, buyer: current_user, seller: @seller)
     if @chatroom.save
-      redirect_to brick_chatroom_path(@brick, @chatroom), notice: "chat created"
+      redirect_to brick_chatroom_path(@brick, @chatroom), notice: "Chat created"
     else
-      redirect_to bricks_path, notice: "failure"
+      flash[:alert] = @chatroom.errors.full_messages.to_sentence
+      redirect_to brick_path(@brick)
     end
   end
 end

@@ -1,19 +1,21 @@
-<h1><%= @brick.name %></h1>
+<div class="container chatroom">
+  <h1>#<%= @brick.name %></h1>
 
-<div class="messages">
-  <% @chatroom.messages.each do |message| %>
-    <%= render "messages/message", message: message %>
-  <% end %>
+  <div class="messages">
+    <% @chatroom.messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+    <%= simple_form_for [@brick, @chatroom, @message],
+      html: {class: "d-flex"} do |f|
+    %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Send a message",
+        wrapper_html: {class: "flex-grow-1"}
+      %>
+      <%= f.submit "Send", class: "btn border" %>
+      <%= f.button :button, "Back", type: "button", onclick: "window.location='#{brick_path(@brick)}'", class: "btn border" %>
+    <% end %>
+  </div>
 </div>
-<%= simple_form_for [@brick, @chatroom, @message],
-  html: {data: "d-flex"} do |f|
-%>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Write a message",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= f.submit "Send", class: "btn border" %>
-<% end %>
-<br>
-<%= link_to "Back", brick_path(@brick), class: "btn border" %>
