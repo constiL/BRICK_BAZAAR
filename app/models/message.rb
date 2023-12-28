@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :chatroom
+  has_one :brick, through: :chatroom
 
   validates :content, presence: true, length: { minimum: 5 }
   validates :user, presence: true

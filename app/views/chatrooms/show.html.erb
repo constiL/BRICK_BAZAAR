@@ -13,5 +13,7 @@
     placeholder: "Write a message",
     wrapper_html: {class: "flex-grow-1"}
   %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <%= f.submit "Send", class: "btn border" %>
 <% end %>
+<br>
+<%= link_to "Back", brick_path(@brick), class: "btn border" %>

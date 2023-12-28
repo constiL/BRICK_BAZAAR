@@ -11,6 +11,9 @@
 <%= link_to "back", bricks_path, class: "btn border" %>
 <br>
 <br>
+<%= link_to "Ask for more info", brick_chatroom_path(@brick), class: "btn border" %>
+<br>
+<br>
 <%= simple_form_for [@brick, @buy_request] do |f| %>
   <%= f.hidden_field :status %>
   <%= f.submit "Request", class: "btn border" %>

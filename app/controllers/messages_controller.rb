@@ -1,11 +1,12 @@
 class MessagesController < ApplicationController
 
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @brick = Brick.find(params[:brick_id])
+    @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
     @message.user = current_user
+    @username = @message.user.username
     if @message.save
       redirect_to brick_chatroom_path(@brick, @chatroom)
     else
