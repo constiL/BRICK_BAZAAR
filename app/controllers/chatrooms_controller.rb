@@ -2,6 +2,8 @@ class ChatroomsController < ApplicationController
   def show
     @brick = Brick.find(params[:brick_id])
     @chatroom = Chatroom.find(params[:id])
+    @buyer = @chatroom.buyer
+    @seller = @chatroom.seller
     @message = Message.new
   end
 
