@@ -41,7 +41,7 @@ class BricksController < ApplicationController
 
   def destroy
     @brick.user = current_user
-    @brick.destroy!
+    @brick.destroy
     redirect_to bricks_path, notice: "Brick was sucessfully deleted", status: :see_other
   end
 

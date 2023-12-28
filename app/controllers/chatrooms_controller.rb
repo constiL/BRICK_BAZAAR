@@ -1,9 +1,15 @@
 class ChatroomsController < ApplicationController
+  before_action :set_chatroom, only: %i[show destroy]
+
+  def index
+    @chatrooms = Chatroom.where(buyer: current_user).or(Chatroom.where(seller: current_user))
+  end
+
   def show
     @brick = Brick.find(params[:brick_id])
-    @chatroom = Chatroom.find(params[:id])
     @buyer = @chatroom.buyer
     @seller = @chatroom.seller
+    @seller = @brick.user
     @message = Message.new
   end
 
@@ -17,5 +23,16 @@ class ChatroomsController < ApplicationController
       flash[:alert] = @chatroom.errors.full_messages.to_sentence
       redirect_to brick_path(@brick)
     end
+  end
+
+  def destroy
+    @chatroom.destroy
+    redirect_to brickfolio_path, notice: "Chat was successfully deleted"
+  end
+
+  private
+
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:id])
   end
 end

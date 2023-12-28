@@ -11,12 +11,12 @@
 <%= link_to "back", bricks_path, class: "btn border" %>
 <br>
 <br>
-<%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'd-inline') do |form| %>
+<%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'chatroom-form d-inline') do |form| %>
   <%= form.submit "Create Chatroom", class: "btn border" %>
 <% end %>
 <br>
 <br>
-<%= simple_form_for [@brick, @buy_request] do |f| %>
+<%= simple_form_for [@brick, @buy_request], html: { class: 'buy-request-form' } do |f| %>
   <%= f.hidden_field :status %>
   <%= f.submit "Request", class: "btn border" %>
 <% end %>

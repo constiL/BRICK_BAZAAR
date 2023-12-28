@@ -1,3 +1,4 @@
+<h1>My Bricks</h1>
 <% @bricks.each do |brick| %>
   <%= link_to brick_path(brick) do %>
   <%= brick.name %>
@@ -5,6 +6,7 @@
   <% end %>
 <% end %>
 <br>
+<h1>My Requests</h1>
 <% @buy_requests.each do |buy_request| %>
   <%= link_to brick_path(buy_request.brick) do %>
   <%= buy_request.brick.name %>
@@ -17,9 +19,4 @@
     <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
     <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
   <% end %>
-<% end %>
-<br>
-<% @chatrooms.each do |chatroom| %>
-  <%= link_to "Chat", brick_chatroom_path(chatroom.brick, chatroom) %>
-  <br>
 <% end %>

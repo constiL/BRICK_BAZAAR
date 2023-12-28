@@ -1,0 +1,9 @@
+<h1>My open chats</h1>
+<% @chatrooms.each do |chatroom| %>
+  <%= link_to brick_chatroom_path(chatroom.brick, chatroom) do %>
+    <p>Chat: <%= chatroom.brick.name %><p>
+  <% end %>
+<% end %>
+<% @chatrooms.each do |chatroom| %>
+  <%= link_to "Close chat", brick_chatroom_path(chatroom.brick, chatroom), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn border" %>
+<% end %>

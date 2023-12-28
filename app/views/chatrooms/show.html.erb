@@ -1,6 +1,6 @@
 <div class="container chatroom">
 <% if @chatroom.buyer == current_user %>
-  <h1>Your chat with <%= @seller.username %></h1>
+  <h1>Your chat with <%= @seller.username %> about <%= @brick.name %></h1>
 <% else %>
   <h1>Your chat with <%= @buyer.username %></h1>
 <% end %>

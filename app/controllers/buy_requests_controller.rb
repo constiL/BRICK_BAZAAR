@@ -23,7 +23,7 @@ class BuyRequestsController < ApplicationController
   end
 
   def destroy
-    @buy_request.destroy!
+    @buy_request.destroy
     redirect_to brick_path, notice: "Buy Request was successfully destroyed", status: :see_other
   end
 
@@ -37,7 +37,7 @@ class BuyRequestsController < ApplicationController
 
   def reject
     @buy_request.update(status: "rejected")
-    @buy_request.destroy!
+    @buy_request.destroy
     redirect_to brickfolio_path, notice: "Buy Request has been rejected"
   end
 
