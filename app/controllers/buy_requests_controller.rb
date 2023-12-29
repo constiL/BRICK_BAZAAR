@@ -6,12 +6,13 @@ class BuyRequestsController < ApplicationController
   def create
     @brick = Brick.find(params[:brick_id])
     @buy_request = BuyRequest.new(buy_request_params)
-    @buy_request.brick = @brick
     @buy_request.user = current_user
+    @buy_request.brick = @brick
     if @buy_request.save
       redirect_to brick_path(@brick), notice: "Buy request created"
     else
-      redirect_to brick_path(@brick), notice: "Already made a buy request"
+      error_message = @buy_request.errors.full_messages.to_sentence
+      redirect_to brick_path(@brick), alert: error_message
     end
   end
 
@@ -25,7 +26,7 @@ class BuyRequestsController < ApplicationController
 
   def destroy
     @buy_request.destroy
-    redirect_to brick_path, notice: "Buy Request was successfully destroyed", status: :see_other
+    redirect_to brick_path, notice: "Buy Request was successfully cancelled", status: :see_other
   end
 
   def accept

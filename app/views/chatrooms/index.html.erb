@@ -1,7 +1,12 @@
 <h1>My open chats</h1>
 <% @chatrooms.each do |chatroom| %>
   <%= link_to brick_chatroom_path(chatroom.brick, chatroom) do %>
-    <p>Chat: <%= chatroom.brick.name %><p>
+    <% if chatroom.brick.user == current_user %>
+      <p>Chat:<%= chatroom.buyer.username %></p>
+    <% else %>
+      <p>Chat: <%= chatroom.seller.username %></p>
+    <% end %>
+    <br>
   <% end %>
 <% end %>
 <% @chatrooms.each do |chatroom| %>
