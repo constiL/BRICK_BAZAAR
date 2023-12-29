@@ -10,6 +10,7 @@ class BricksController < ApplicationController
     @buy_request = BuyRequest.new
     @chatroom = Chatroom.new
     @message = Message.new
+    @current_user = current_user
   end
 
   def new

@@ -5,6 +5,7 @@ class Chatroom < ApplicationRecord
   belongs_to :seller, class_name: "User"
 
   validate :unique_chatroom_per_buyer_seller_brick
+  validate :buyer_cannot_be_seller
 
   private
 
@@ -16,6 +17,12 @@ class Chatroom < ApplicationRecord
     )
     if existing_chatroom && existing_chatroom != self
       errors.add(:base, "A chatroom already exists for this buyer, seller, and brick combination")
+    end
+  end
+
+  def buyer_cannot_be_seller
+    if buyer_id == seller_id
+      errors.add(:base, "Cannot start a chat with yourself")
     end
   end
 end

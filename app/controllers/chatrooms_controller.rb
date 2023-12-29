@@ -27,7 +27,7 @@ class ChatroomsController < ApplicationController
 
   def destroy
     @chatroom.destroy
-    redirect_to brickfolio_path, notice: "Chat was successfully deleted"
+    redirect_to chatrooms_path, notice: "Chat was successfully deleted"
   end
 
   private

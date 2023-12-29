@@ -11,17 +11,21 @@
 <%= link_to "back", bricks_path, class: "btn border" %>
 <br>
 <br>
-<%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'chatroom-form d-inline') do |form| %>
-  <%= form.submit "Create Chatroom", class: "btn border" %>
+<%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'd-inline') do |form| %>
+  <%= form.submit "Chat with owner", class: "btn border" %>
 <% end %>
 <br>
 <br>
-<%= simple_form_for [@brick, @buy_request], html: { class: 'buy-request-form' } do |f| %>
-  <%= f.hidden_field :status %>
-  <%= f.submit "Request", class: "btn border" %>
-<% end %>
-<% @brick.buy_requests.each do |buy_request| %>
-  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete }, class:"btn border"  %>
+<% if @current_user && @current_user.buy_requests.exists? %>
+  <% @brick.buy_requests.each do |buy_request| %>
+    <%= link_to "Cancel buy request", buy_request_path(buy_request), data: { turbo_method: :delete }, class:"btn border"  %>
+  <% end %>
+  <br>
+<% else %>
+  <%= simple_form_for [@brick, @buy_request] do |f| %>
+    <%= f.hidden_field :status %>
+    <%= f.submit "Request to buy", class: "btn border" %>
+  <% end %>
 <% end %>
 <br>
 <%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
