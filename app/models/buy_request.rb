@@ -15,5 +15,8 @@ class BuyRequest < ApplicationRecord
   private
 
   def cannot_request_own_brick
+    if @current_user == @brick.user_id
+      errors.add(:base, "Cannot request to buy your own brick")
+    end
   end
 end

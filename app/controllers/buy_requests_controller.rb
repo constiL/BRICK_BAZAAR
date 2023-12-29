@@ -8,7 +8,6 @@ class BuyRequestsController < ApplicationController
     @buy_request = BuyRequest.new(buy_request_params)
     @buy_request.brick = @brick
     @buy_request.user = current_user
-    binding.pry
     if @buy_request.save
       redirect_to brick_path(@brick), notice: "Buy request created"
     else
