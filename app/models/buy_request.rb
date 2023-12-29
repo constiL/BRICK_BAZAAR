@@ -15,6 +15,5 @@ class BuyRequest < ApplicationRecord
   private
 
   def cannot_request_own_brick
-    if 
   end
 end

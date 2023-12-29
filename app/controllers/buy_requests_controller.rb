@@ -2,11 +2,13 @@ class BuyRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_buy_request, only: %i[update destroy accept reject]
 
+
   def create
     @brick = Brick.find(params[:brick_id])
     @buy_request = BuyRequest.new(buy_request_params)
     @buy_request.brick = @brick
     @buy_request.user = current_user
+    binding.pry
     if @buy_request.save
       redirect_to brick_path(@brick), notice: "Buy request created"
     else
