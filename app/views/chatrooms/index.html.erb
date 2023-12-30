@@ -8,6 +8,8 @@
     <% else %>
       <p>Chat: <%= chatroom.seller.username %></p>
     <% end %>
-    <%= link_to "Close chat", brick_chatroom_path(chatroom.brick, chatroom), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn border" %>
+    <%= link_to "Close chat", brick_chatroom_path(chatroom.brick, chatroom),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+      class: "btn border" %>
   <% end %>
 <% end %>

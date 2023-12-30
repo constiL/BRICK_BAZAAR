@@ -16,8 +16,12 @@
     <%= link_to brick_path(buy_request.brick) do %>
       <%= buy_request.brick.name %>
     <% end %>
-    <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
-    <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
+    <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request),
+      method: :patch, class: "btn border",
+      data: { turbo_confirm: 'Are you sure?' } %>
+    <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request),
+      method: :patch, class: "btn border",
+      data: { turbo_confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
 
@@ -28,6 +32,8 @@
     <%= link_to brick_path(buy_request.brick) do %>
       <%= buy_request.brick.name %>
     <% end %>
-    <%= link_to "Cancel buy request", buy_request_path(buy_request), data: { turbo_method: :delete }, class: "btn border" %>
+    <%= link_to "Cancel buy request", buy_request_path(buy_request),
+      data: { turbo_method: :delete },
+      class: "btn border" %>
   <% end %>
 <% end %>

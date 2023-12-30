@@ -9,7 +9,14 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @username = @message.user.username
     if @message.save
-      redirect_to brick_chatroom_path(@brick, @chatroom)
+      
+      # broadcast new message to respective chatroom
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "message", locals: {message: @message})
+      )
+      head :ok
+
     else
       render "chatrooms/show", status: :unprocessable_entity
     end
