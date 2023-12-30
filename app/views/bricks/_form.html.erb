@@ -2,13 +2,10 @@
 <%= simple_form_for(@brick) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :city %>
-  <%= f.input :country, as: :country %>
   <%= f.input :address,
-    input_html: {data: {address_autocomplete_target: "address"}},
-    wrapper_html: {data: {controller: "address-autocomplete",
-    address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]} }%>
-  <%= f.input :postal_code %>
+    input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+  %>
   <%= f.input :price %>
   <%= f.input :brick_condition, collection: (1..5) %>
   <%= f.input :colour, collection: %w(red blue yellow green orange grey) %>
