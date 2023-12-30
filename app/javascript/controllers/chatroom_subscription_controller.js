@@ -23,7 +23,6 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log("Unsubscribed from the chatroom")
     this.channel.unsubscribe()
   }
 }
