@@ -1,20 +1,28 @@
+<h1>My Bricks</h1>
 <% @bricks.each do |brick| %>
   <%= link_to brick_path(brick) do %>
     <%= brick.name %>
-    <br>
   <% end %>
 <% end %>
-<br>
+
+<h1>My Requests</h1>
+<h3>Somebody requesting my bricks</h3>
 <% @buy_requests.each do |buy_request| %>
-  <%= link_to brick_path(buy_request.brick) do %>
-    <%= buy_request.brick.name %>
-  <br>
+  <% if buy_request.status == "pending" && buy_request.brick.user_id == current_user.id %>
+    <%= link_to brick_path(buy_request.brick) do %>
+      <%= buy_request.brick.name %>
+      <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
+      <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
+    <% end %>
   <% end %>
 <% end %>
-<br>
+
+<h3>Me requesting somebodies bricks</h3>
 <% @buy_requests.each do |buy_request| %>
-  <% if buy_request.status == "pending" %>
-    <%= button_to "Accept", accept_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
-    <%= button_to "Reject", reject_brick_buy_request_path(buy_request.brick, buy_request), method: :patch, class: "btn border", data: { turbo_confirm: 'Are you sure?' } %>
+  <% if buy_request.brick.user_id != current_user.id %>
+    <%= link_to brick_path(buy_request.brick) do %>
+      <%= buy_request.brick.name %>
+      <%= link_to "Cancel buy request", buy_request_path(buy_request), data: { turbo_method: :delete }, class: "btn border" %>
+    <% end %>
   <% end %>
 <% end %>

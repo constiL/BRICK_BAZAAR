@@ -3,8 +3,6 @@
 <% @bricks.each do |brick| %>
   <%= link_to brick_path(brick) do %>
     <%= brick.name %>
-    <br>
   <% end %>
 <% end %>
-<br>
 <%= link_to "add brick", new_brick_path, class:"btn border" %>

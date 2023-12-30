@@ -8,18 +8,30 @@
   <li>Colour: <%= @brick.colour %></li>
 </ul>
 
-<%= link_to "back", bricks_path, class: "btn border" %>
-<br>
-<br>
-<%= simple_form_for [@brick, @buy_request] do |f| %>
-  <%= f.hidden_field :status %>
-  <%= f.submit "Request", class: "btn border" %>
+<%= link_to "Back", bricks_path, class: "btn border" %>
+<% if @brick.user != current_user %>
+  <%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'd-inline') do |form| %>
+    <%= form.submit "Chat with owner", class: "btn border" %>
+  <% end %>
 <% end %>
-<% @brick.buy_requests.each do |buy_request| %>
-  <%= link_to "Cancel", buy_request_path(buy_request), data: { turbo_method: :delete }, class:"btn border"  %>
+
+<% if @current_user %>
+  <!-- Check if the current user has a buy request for this specific brick -->
+  <% existing_request = @brick.buy_requests.find { |request| request.user_id == @current_user.id } %>
+
+  <% if existing_request %>
+    <!-- If there is an existing request, show the option to cancel it -->
+    <%= link_to "Cancel buy request", buy_request_path(existing_request), data: { turbo_method: :delete }, class: "btn border" %>
+
+  <% elsif @brick.user != current_user %>
+    <!-- If there is no existing request, show the form to create a new buy request -->
+    <%= simple_form_for [@brick, @buy_request] do |f| %>
+      <%= f.hidden_field :status %>
+      <%= f.submit "Request to buy", class: "btn border" %>
+    <% end %>
+  <% end %>
 <% end %>
-<br>
+
 <%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
-<br>
-<br>
+
 <%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn border" %>
