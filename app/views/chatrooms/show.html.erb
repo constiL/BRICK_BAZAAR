@@ -1,11 +1,12 @@
-<div class="container chatroom">
+<div class="container chatroom" data-controller="chatroom-subscription">
 <%# displaying different chat title depending on role(buyer/seller) %>
 <% if @chatroom.buyer == current_user %>
   <h1>Your chat with <%= @seller.username %> about <%= @brick.name %></h1>
 <% else %>
   <h1>Your chat with <%= @buyer.username %></h1>
 <% end %>
-  <div class="messages">
+
+  <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
@@ -21,5 +22,4 @@
       <%= f.submit "Send", class: "btn border" %>
       <%= f.button :button, "Back", type: "button", onclick: "window.location='#{brick_path(@brick)}'", class: "btn border" %>
     <% end %>
-  </div>
 </div>
