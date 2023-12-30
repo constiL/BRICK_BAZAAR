@@ -46,6 +46,16 @@ class BricksController < ApplicationController
     redirect_to bricks_path, notice: "Brick was sucessfully deleted", status: :see_other
   end
 
+  def map
+    @bricks = Brick.all
+    @markers = @bricks.geocoded.map do |brick|
+      {
+        lat: brick.latitude,
+        lng: brick.longitude
+      }
+    end
+  end
+
   private
 
   def set_brick

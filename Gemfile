@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 # gem to allow users to upload own images
 gem "cloudinary"
 
+# gem for geocoding for mapbox
+gem "geocoder"
+
 gem "bootstrap", "~> 5.2"
 gem "devise"
 gem "autoprefixer-rails"

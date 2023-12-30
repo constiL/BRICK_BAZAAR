@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :bricks do
+    collection do
+      get :map
+    end
     resources :chatrooms, only: %i[show create destroy] do
       resources :messages, only: %i[create]
     end
@@ -20,5 +23,4 @@ Rails.application.routes.draw do
 
   resources :chatrooms, only: %i[index]
   resources :buy_requests, only: %i[destroy]
-
 end
