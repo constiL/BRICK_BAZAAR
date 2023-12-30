@@ -1,4 +1,6 @@
 <h1> <%= @brick.name %> </h1>
+
+<%# displaying all the brick attributes in unlisted form %>
 <ul>
   <li>Description: <%= @brick.description %></li>
   <li>City: <%= @brick.city %></li>
@@ -9,22 +11,20 @@
 </ul>
 
 <%= link_to "Back", bricks_path, class: "btn border" %>
+
+<%# logic to only display the chat with owner form/button when the current user is not the owner of the brick %>
 <% if @brick.user != current_user %>
   <%= form_with(url: brick_chatrooms_path(@brick), method: :post, local: true, class: 'd-inline') do |form| %>
     <%= form.submit "Chat with owner", class: "btn border" %>
   <% end %>
 <% end %>
 
+<%# logic to find if current user has an existing buy request for shown brick. If request exists it displays the cancel request btn(which deletes the request), if not it displays the buy request form %>
 <% if @current_user %>
-  <!-- Check if the current user has a buy request for this specific brick -->
   <% existing_request = @brick.buy_requests.find { |request| request.user_id == @current_user.id } %>
-
   <% if existing_request %>
-    <!-- If there is an existing request, show the option to cancel it -->
     <%= link_to "Cancel buy request", buy_request_path(existing_request), data: { turbo_method: :delete }, class: "btn border" %>
-
   <% elsif @brick.user != current_user %>
-    <!-- If there is no existing request, show the form to create a new buy request -->
     <%= simple_form_for [@brick, @buy_request] do |f| %>
       <%= f.hidden_field :status %>
       <%= f.submit "Request to buy", class: "btn border" %>
@@ -32,6 +32,8 @@
   <% end %>
 <% end %>
 
-<%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
-
-<%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn border" %>
+<%# logic to check if current user the owner of current brick and if he is displays the edit and delete btns %>
+<% if @brick.user == current_user %>
+  <%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
+  <%= link_to "delete this brick", brick_path(@brick), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn border" %>
+<% end %>

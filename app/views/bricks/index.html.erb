@@ -1,8 +1,10 @@
 <h1> Explore Bricks </h1>
 
+<%# display all bricks that have been added by users %>
 <% @bricks.each do |brick| %>
   <%= link_to brick_path(brick) do %>
     <%= brick.name %>
   <% end %>
 <% end %>
+
 <%= link_to "add brick", new_brick_path, class:"btn border" %>

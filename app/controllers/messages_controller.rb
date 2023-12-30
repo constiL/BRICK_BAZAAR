@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
 
+  # create action for adding a new message to chatroom associated with a specific brick
   def create
     @brick = Brick.find(params[:brick_id])
     @chatroom = Chatroom.find(params[:chatroom_id])

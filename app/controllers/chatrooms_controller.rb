@@ -13,6 +13,7 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
+  # create action for initiating a chatroom associated with a specific brick, seller and buyer combination only if one doesnt exist yet
   def create
     @brick = Brick.find(params[:brick_id])
     @seller = @brick.user
