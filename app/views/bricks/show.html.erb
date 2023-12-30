@@ -10,6 +10,11 @@
   <li>Colour: <%= @brick.colour %></li>
 </ul>
 
+<%# displaying the photo user uploaded via cloudinary %>
+<% if @brick.photo.attached? %>
+  <%= cl_image_tag @brick.photo.key, :transformation => { :width => 400, :crop => "pad" } %>
+<% end %>
+
 <%= link_to "Back", bricks_path, class: "btn border" %>
 
 <%# logic to only display the chat with owner form/button when the current user is not the owner of the brick %>

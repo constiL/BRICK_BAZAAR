@@ -1,6 +1,7 @@
 class Brick < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
   has_many :buy_requests, dependent: :destroy
+  has_one_attached :photo
   belongs_to :user
 
   validates :name, :description, :city, :address, :price, :brick_condition, :colour,
