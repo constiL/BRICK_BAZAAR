@@ -3,7 +3,8 @@ class BuyRequest < ApplicationRecord
   belongs_to :brick
 
   validates :user, :brick, presence: true
-  validates :user_id, uniqueness: { scope: :brick_id, message: "Already made a buy request for this brick" }
+  validates :user_id, uniqueness: { scope: :brick_id,
+    message: "Already made a buy request for this brick" }
   validate :cannot_buy_own_brick
 
   # enum to make working with buy request queries more readable and intuitive

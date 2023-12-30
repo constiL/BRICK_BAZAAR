@@ -1,18 +1,22 @@
-<div class="container chatroom" data-controller="chatroom-subscription">
-<%# displaying different chat title depending on role(buyer/seller) %>
-<% if @chatroom.buyer == current_user %>
-  <h1>Your chat with <%= @seller.username %> about <%= @brick.name %></h1>
-<% else %>
-  <h1>Your chat with <%= @buyer.username %></h1>
-<% end %>
+<div class="container chatroom" data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+
+  <%# displaying different chat title depending on role(buyer/seller) %>
+  <% if @chatroom.buyer == current_user %>
+    <h1>Your chat with <%= @seller.username %> about <%= @brick.name %></h1>
+  <% else %>
+    <h1>Your chat with <%= @buyer.username %></h1>
+  <% end %>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
+
+    <%# reset the message form for the sender %>
     <%= simple_form_for [@brick, @chatroom, @message],
-      html: {class: "d-flex"} do |f|
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
     %>
       <%= f.input :content,
         label: false,
@@ -20,6 +24,8 @@
         wrapper_html: {class: "flex-grow-1"}
       %>
       <%= f.submit "Send", class: "btn border" %>
-      <%= f.button :button, "Back", type: "button", onclick: "window.location='#{brick_path(@brick)}'", class: "btn border" %>
+      <%= f.button :button, "Back", type: "button",
+        onclick: "window.location='#{brick_path(@brick)}'",
+        class: "btn border" %>
     <% end %>
 </div>
