@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+
   has_many :bricks
   has_many :buy_requests
   has_many :chatrooms_as_buyer, class_name: "Chatroom", foreign_key: "buyer_id", dependent: :destroy

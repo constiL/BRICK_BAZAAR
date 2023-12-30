@@ -1,4 +1,5 @@
 <div class="container chatroom">
+<%# displaying different chat title depending on role(buyer/seller) %>
 <% if @chatroom.buyer == current_user %>
   <h1>Your chat with <%= @seller.username %> about <%= @brick.name %></h1>
 <% else %>
@@ -13,7 +14,6 @@
       html: {class: "d-flex"} do |f|
     %>
       <%= f.input :content,
-        # required: true,
         label: false,
         placeholder: "Send a message",
         wrapper_html: {class: "flex-grow-1"}

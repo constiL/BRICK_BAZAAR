@@ -29,6 +29,7 @@ class BuyRequestsController < ApplicationController
     redirect_to brick_path, notice: "Buy Request was successfully cancelled", status: :see_other
   end
 
+  # custom action to allow user to accept buy request (and change status of buy request to accepted)
   def accept
     if @buy_request.update(status: 'accepted')
       redirect_to brickfolio_path, notice: 'Buy request accepted'
@@ -36,7 +37,8 @@ class BuyRequestsController < ApplicationController
       redirect_to brickfolio_path, alert: 'Failed to accept buy request'
     end
   end
-
+  
+  # custom action to allow user to reject buy request (and change status of buy request to rejected)
   def reject
     @buy_request.update(status: "rejected")
     @buy_request.destroy

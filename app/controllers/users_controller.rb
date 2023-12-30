@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # gather information related to current_user (bricks, buy_requests(seller&buyer), chatrooms)
   def show
     @user = current_user
     @bricks = @user.bricks
