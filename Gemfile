@@ -50,6 +50,9 @@ gem "cloudinary"
 # gem for geocoding for mapbox
 gem "geocoder"
 
+#adding dropdown for country select
+gem 'country_select', '~> 8.0'
+
 gem "bootstrap", "~> 5.2"
 gem "devise"
 gem "autoprefixer-rails"
