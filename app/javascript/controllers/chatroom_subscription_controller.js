@@ -13,7 +13,6 @@ export default class extends Controller {
     );
   }
 
-  // private method to insert new message, scroll to the bottom and reset the form
   #insertMessageAndScrollDown(data) {
     this.messagesTarget.insertAdjacentHTML("beforeend", data)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
