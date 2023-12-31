@@ -5,7 +5,7 @@ class BricksController < ApplicationController
   def index
     @bricks = Brick.all
     if params[:query].present?
-      sql_subquery = "name ILIKE :query OR address ILIKE :query OR colour ILIKE :query"
+      sql_subquery = "name ILIKE :query OR colour ILIKE :query"
       @bricks = @bricks.where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
