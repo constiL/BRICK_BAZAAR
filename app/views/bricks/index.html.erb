@@ -1,21 +1,28 @@
-<h1> Explore Bricks </h1>
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: bricks_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Type a keyword"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <div id="bricks">
+        <h1> Explore Bricks </h1>
+        <%= form_with url: bricks_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Type a keyword"
+            %>
+          <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <% end %>
+        <% if @bricks.any? %>
+          <% @bricks.each do |brick| %>
+            <%= link_to brick_path(brick) do %>
+              <h4><%= brick.name %></h4>
+              <p><%= brick.address %></p>
+            <% end %>
+          <% end %>
+        <% else %>
+          <em>Sorry, no bricks found.</em>
+        <% end %>
+      </div>
+      <%= link_to "add brick", new_brick_path, class:"btn border" %>
+    </div>
   </div>
 </div>
-<%# display all bricks that have been added by users %>
-<% @bricks.each do |brick| %>
-  <%= link_to brick_path(brick) do %>
-    <%= brick.name %>
-  <% end %>
-<% end %>
-
-<%= link_to "add brick", new_brick_path, class:"btn border" %>
