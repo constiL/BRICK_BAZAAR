@@ -51,7 +51,9 @@ class BricksController < ApplicationController
     @markers = @bricks.geocoded.map do |brick|
       {
         lat: brick.latitude,
-        lng: brick.longitude
+        lng: brick.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {brick: brick}),
+        marker_html: render_to_string(partial: "marker", locals: {brick: brick})
       }
     end
   end
