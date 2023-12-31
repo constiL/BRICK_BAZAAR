@@ -16,7 +16,7 @@ class Brick < ApplicationRecord
   pg_search_scope :search_by_name_and_colour,
     against: [ :name, :colour ],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true }
     }
     pg_search_scope :search_full_text, against: {
       title: 'A',

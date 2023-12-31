@@ -4,6 +4,7 @@ class BricksController < ApplicationController
 
   def index
     @bricks = Brick.all
+    # take user input to display bricks according to their search
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR colour ILIKE :query"
       @bricks = @bricks.where(sql_subquery, query: "%#{params[:query]}%")
@@ -50,6 +51,7 @@ class BricksController < ApplicationController
     redirect_to bricks_path, notice: "Brick was sucessfully deleted", status: :see_other
   end
 
+  # action to display map with custom marker as well as pop up with extra info
   def map
     @bricks = Brick.all
     @markers = @bricks.geocoded.map do |brick|
