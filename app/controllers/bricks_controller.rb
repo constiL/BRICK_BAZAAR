@@ -4,6 +4,9 @@ class BricksController < ApplicationController
 
   def index
     @bricks = Brick.all
+    if params[:query].present?
+      @bricks = @bricks.where(name: params[:query])
+    end
   end
 
   def show
