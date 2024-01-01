@@ -18,6 +18,7 @@ class Brick < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+    
     pg_search_scope :search_full_text, against: {
       title: 'A',
       subtitle: 'B',
