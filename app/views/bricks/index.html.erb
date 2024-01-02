@@ -1,10 +1,22 @@
-<h1> Explore Bricks </h1>
-
-<%# display all bricks that have been added by users %>
-<% @bricks.each do |brick| %>
-  <%= link_to brick_path(brick) do %>
-    <%= brick.name %>
-  <% end %>
-<% end %>
-
-<%= link_to "add brick", new_brick_path, class:"btn border" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+    <h1> Explore Bricks </h1>
+      <div data-controller="search-bricks">
+        <%= form_with url: bricks_path, method: :get, html: { class: "d-flex", data: {search_bricks_target: "form" } } do |f| %>
+          <%= f.text_field :query,
+                class: "form-control",
+                placeholder: "Search by name or colour",
+                value: params[:query],
+                data: {
+                  search_bricks_target: "input",
+                  action: "keyup->search-bricks#update"
+                  }
+            %>
+        <% end %>
+        <%= render "list", bricks: @bricks %>
+      </div>
+    <%= link_to "add brick", new_brick_path, class:"btn border" %>
+    </div>
+  </div>
+</div>

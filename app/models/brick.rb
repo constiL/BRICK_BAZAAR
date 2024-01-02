@@ -11,4 +11,17 @@ class Brick < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_colour,
+    against: [ :name, :colour ],
+    using: {
+      tsearch: { prefix: true }
+    }
+    
+    pg_search_scope :search_full_text, against: {
+      title: 'A',
+      subtitle: 'B',
+      content: 'C'
+    }
 end

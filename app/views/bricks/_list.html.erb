@@ -1,0 +1,17 @@
+<div data-search-bricks-target="list">
+  <p class="h4">
+    <% if params[:query].blank? %>
+      <%= pluralize bricks.count, 'brick' %> available
+    <% else %>
+      <%= pluralize bricks.count, 'result' %> for "<%= params[:query] %>"
+    <% end %>
+  </p>
+
+  <div class="bricks">
+    <% bricks.each do |brick| %>
+      <%= link_to brick_path(brick) do %>
+        <%= brick.name %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
