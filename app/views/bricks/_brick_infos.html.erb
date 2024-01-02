@@ -1,0 +1,9 @@
+<div class="brick-card">
+  <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
+
+  <div class="brick-infos">
+    <%= link_to brick_path(brick) do %>
+      <h2><%= brick.name %><small> (<%= brick.address %>)<small></h2>
+    <% end %>
+  </div>
+</div>
