@@ -3,8 +3,15 @@
 <%# displaying all the bricks that the current user has created %>
 <% @bricks.each do |brick| %>
   <%= link_to brick_path(brick) do %>
-    <%= brick.name %>
-  <% end %>
+    <% if brick.photo.attached? %>
+      <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
+    <% end %>
+    <h2><%= brick.name %></h2>
+    <%= link_to "edit this brick", edit_brick_path(brick), class:"btn border" %>
+    <%= link_to "delete this brick", brick_path(brick),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+      class:"btn border" %>
+    <% end %>
 <% end %>
 
 <h1>My Requests</h1>

@@ -40,11 +40,3 @@ if not it displays the buy request form %>
     <% end %>
   <% end %>
 <% end %>
-
-<%# logic to check if current user the owner of current brick and if he is displays the edit and delete btns %>
-<% if @brick.user == current_user %>
-  <%= link_to "edit this brick", edit_brick_path, class:"btn border"  %>
-  <%= link_to "delete this brick", brick_path(@brick),
-    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-    class:"btn border" %>
-<% end %>

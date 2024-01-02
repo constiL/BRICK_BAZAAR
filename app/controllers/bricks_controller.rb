@@ -44,7 +44,7 @@ class BricksController < ApplicationController
   def update
     @brick.user = current_user
     if @brick.update(brick_params)
-      redirect_to @brick, notice: "Brick was succesfully updated"
+      redirect_to brickfolio_path, notice: "Brick was succesfully updated"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,7 +53,7 @@ class BricksController < ApplicationController
   def destroy
     @brick.user = current_user
     @brick.destroy
-    redirect_to bricks_path, notice: "Brick was sucessfully deleted", status: :see_other
+    redirect_to brickfolio_path, notice: "Brick was sucessfully deleted", status: :see_other
   end
 
   # action to display map with custom marker as well as pop up with extra info
