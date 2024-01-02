@@ -1,32 +1,22 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-8">
-      <div id="bricks">
-        <h1> Explore Bricks </h1>
-        <%= form_with url: bricks_path, method: :get, class: "d-flex" do %>
-          <%= text_field_tag :query,
-                params[:query],
+    <h1> Explore Bricks </h1>
+      <div data-controller="search-bricks">
+        <%= form_with url: bricks_path, method: :get, html: { class: "d-flex", data: {search_bricks_target: "form" } } do |f| %>
+          <%= f.text_field :query,
                 class: "form-control",
-                placeholder: "Search by name or colour"
+                placeholder: "Search by name or colour",
+                value: params[:query],
+                data: {
+                  search_bricks_target: "input",
+                  action: "keyup->search-bricks#update"
+                  }
             %>
-          <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
         <% end %>
-        <% if params[:query].blank? %>
-          <h1 class="h3"><%= pluralize @bricks.count, 'brick' %> available</h1>
-        <% else %>
-          <h1 class="h3"> Sorry, no bricks found for <%= params[:query] %></h1>
-        <% end %>
-        <div class="bricks">
-          <% @bricks.each do |brick| %>
-            <div class="brick-card">
-              <%= link_to brick_path(brick) do %>
-                <h2><%= brick.name %> <small>(<%= brick.address %>)</small></h2>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+        <%= render "list", bricks: @bricks %>
       </div>
-      <%= link_to "add brick", new_brick_path, class:"btn border" %>
+    <%= link_to "add brick", new_brick_path, class:"btn border" %>
     </div>
   </div>
 </div>
