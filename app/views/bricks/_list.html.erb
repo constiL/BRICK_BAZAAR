@@ -9,9 +9,7 @@
 
   <div class="bricks">
     <% bricks.each do |brick| %>
-      <%= link_to brick_path(brick) do %>
-        <%= brick.name %>
-      <% end %>
+      <%= render "brick_infos", brick:  %>
     <% end %>
   </div>
 </div>

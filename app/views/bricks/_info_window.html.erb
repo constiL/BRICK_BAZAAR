@@ -1,2 +1,7 @@
-<h2><%= brick.name %></h2>
-<p><%= brick.address %></p>
+<%= link_to brick_path(brick) do %>
+  <% if brick.photo.attached? %>
+    <%= cl_image_tag brick.photo.key, :transformation => { :width => 100, :crop => "pad" } %>
+  <% end %>
+  <h2><%= brick.name %></h2>
+  <p><%= brick.address %></p>
+<% end %>
