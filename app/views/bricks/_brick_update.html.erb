@@ -25,4 +25,7 @@
       <%= f.input :photo, label: "Upload a picture of your brick", as: :file %>
       <%= f.submit "Update Brick", class: "btn border" %>
     <% end %>
+    <%= link_to "delete this brick", brick_path(brick),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+      class:"btn border" %>
 </div>
