@@ -1,5 +1,4 @@
 <div class="brick-card" data-controller="edit-brick">
-  <% @bricks.each do |brick| %>
     <%= link_to brick_path(brick) do %>
       <% if brick.photo.attached? %>
         <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
@@ -26,5 +25,4 @@
       <%= f.input :photo, label: "Upload a picture of your brick", as: :file %>
       <%= f.submit "Update Brick", class: "btn border" %>
     <% end %>
-  <% end %>
 </div>

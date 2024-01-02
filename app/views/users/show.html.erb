@@ -1,8 +1,9 @@
 <h1>My Bricks</h1>
 
 <%# displaying all the bricks that the current user has created %>
-
-<%= render "bricks/brick_update", bricks: @bricks %>
+<% @bricks.each do |brick| %>
+  <%= render "bricks/brick_update", brick: brick %>
+<% end %>
 
 <h1>My Requests</h1>
 
