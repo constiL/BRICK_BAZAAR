@@ -1,18 +1,18 @@
-<div class="brick-card" data-controller="edit-brick">
+<div class="brick-card" data-controller="edit-brick" data-edit-brick-target="card">
     <%= link_to brick_path(brick) do %>
       <% if brick.photo.attached? %>
         <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
-        <h2><%= brick.name %></h2>
       <% end %>
     <% end %>
 
-      <div class="brick-infos" data-edit-brick-target="infos">
+      <div class="brick-infos <%= "d-none" if brick.errors.any? %>" data-edit-brick-target="infos">
+        <h2><%= brick.name %></h2>
         <button aria-label="Edit brick" data-action="click->edit-brick#revealForm">
           <i class="fa-solid fa-pen fa-xs ml-2"></i>
         </button>
       </div>
 
-    <%= simple_form_for brick, html: { class: "d-none", data: { edit_brick_target: "form "}} do |f|%>
+    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ", action: "submit->edit-brick#update"}} do |f|%>
       <%= f.input :name %>
       <%= f.input :description %>
       <%= f.input :address,

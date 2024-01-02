@@ -44,9 +44,14 @@ class BricksController < ApplicationController
   def update
     @brick.user = current_user
     if @brick.update(brick_params)
-      redirect_to brickfolio_path, notice: "Brick was succesfully updated"
+      respond_to do |format|
+        format.html { redirect_to brickfolio_path, notice: "Brick was succesfully updated" }
+        format.text { render partial: "bricks/brick_update", locals: { brick: @brick }, formats: [:html] }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.text { render partial: "bricks/brick_update", locals: { brick: @brick }, formats: [:html] }
+      end
     end
   end
 
