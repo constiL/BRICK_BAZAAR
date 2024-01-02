@@ -9,7 +9,10 @@
 
   <div class="bricks">
     <% bricks.each do |brick| %>
-      <%= render "brick_infos", brick:  %>
+      <%= link_to brick_path(brick) do %>
+      <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
+        <h2><%= brick.name %><small> (<%= brick.address %>)<small></h2>
+      <% end %>
     <% end %>
   </div>
 </div>

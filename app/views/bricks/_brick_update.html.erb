@@ -1,0 +1,31 @@
+<div class="brick-card" data-controller="edit-brick" data-edit-brick-target="card">
+    <%= link_to brick_path(brick) do %>
+      <% if brick.photo.attached? %>
+        <%= cl_image_tag brick.photo.key, :transformation => { :width => 200, :crop => "pad" } %>
+      <% end %>
+    <% end %>
+
+      <div class="brick-infos <%= "d-none" if brick.errors.any? %>" data-edit-brick-target="infos">
+        <h2><%= brick.name %></h2>
+        <button aria-label="Edit brick" data-action="click->edit-brick#revealForm">
+          <i class="fa-solid fa-pen fa-xs ml-2"></i>
+        </button>
+      </div>
+
+    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ", action: "submit->edit-brick#update"}} do |f|%>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :address,
+        input_html: { id: "brick_address", data: {address_autocomplete_target: "address"}, class: "d-none"},
+        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+      %>
+      <%= f.input :price %>
+      <%= f.input :brick_condition, collection: (1..5) %>
+      <%= f.input :colour, collection: %w(red blue yellow green orange grey) %>
+      <%= f.input :photo, label: "Upload a picture of your brick", as: :file %>
+      <%= f.submit "Update Brick", class: "btn border" %>
+    <% end %>
+    <%= link_to "delete this brick", brick_path(brick),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+      class:"btn border" %>
+</div>
