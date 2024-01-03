@@ -12,15 +12,18 @@
         </button>
       </div>
 
-    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ", action: "submit->edit-brick#update"}} do |f|%>
-      <%= f.input :category, collection: BrickType.distinct.pluck(:category), prompt: "Select a Category", input_html: { id: "brick_category" } %>
-      <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category), prompt: "Select a Sub Category", input_html: { id: "brick_sub_category" } %>
-      <%= f.input :size, collection: BrickType.distinct.pluck(:size), prompt: "Select a Size", input_html: { id: "brick_size"} %>
-      <%= f.input :name, collection: BrickType.distinct.pluck(:name), prompt: "Select a type", input_html: { id: "brick_name" } %>
+    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ",
+      action: "submit->edit-brick#update"}} do |f|
+      %>
+      <%= f.input :category, collection: BrickType.distinct.pluck(:category), prompt: "Select a Category" %>
+      <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category), prompt: "Select a Sub Category" %>
+      <%= f.input :size, collection: BrickType.distinct.pluck(:size), prompt: "Select a Size" %>
+      <%= f.input :name, collection: BrickType.distinct.pluck(:name), prompt: "Select a type" %>
       <%= f.input :description %>
       <%= f.input :address,
-        input_html: { id: "brick_address", data: {address_autocomplete_target: "address"}, class: "d-none"},
-        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+        input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
+        wrapper_html: {data: {controller: "address-autocomplete",
+        address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
       %>
       <%= f.input :price %>
       <%= f.input :brick_condition, collection: (1..5) %>
