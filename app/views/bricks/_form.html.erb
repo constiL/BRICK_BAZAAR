@@ -1,6 +1,9 @@
-<%# partial for creating/editing a brick with image upload %>
+<%# partial for creating a brick with image upload %>
 <%= simple_form_for(@brick) do |f| %>
-  <%= f.input :name %>
+  <%= f.input :category, collection: BrickType.distinct.pluck(:category), prompt: "Select a Category", input_html: { id: "brick_category" } %>
+  <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category), prompt: "Select a Sub Category", input_html: { id: "brick_sub_category" }, class: "d-none" %>
+  <%= f.input :size, collection: BrickType.distinct.pluck(:size), prompt: "Select a size", input_html: { id: "brick_size", class: "d-none" } %>
+  <%= f.input :name, collection: BrickType.distinct.pluck(:name), prompt: "Select a type", input_html: { id: "brick_name" }, class: "d-none" %>
   <%= f.input :description %>
   <%= f.input :address,
     input_html: {id: "brick_address", data: {address_autocomplete_target: "address"}, class: "d-none"},

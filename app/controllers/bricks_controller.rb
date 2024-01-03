@@ -81,6 +81,6 @@ class BricksController < ApplicationController
   end
 
   def brick_params
-    params.require(:brick).permit(:name, :description, :address, :price, :brick_condition, :colour, :photo,)
+    params.require(:brick).permit(:name, :description, :address, :price, :brick_condition, :colour, :photo, :category, :sub_category, :size)
   end
 end
