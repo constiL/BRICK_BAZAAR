@@ -21,9 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'brick_categories/filter_sub_category'
-  get 'brick_categories/filter_size'
-  
+  get 'brick_categories/filter_sub_category';
+  get 'brick_categories/filter_size';
+  get 'brick_categories/filter_category_type', to: 'brick_categories#filter_category_type'
+
 
   resources :chatrooms, only: %i[index]
   resources :buy_requests, only: %i[destroy]

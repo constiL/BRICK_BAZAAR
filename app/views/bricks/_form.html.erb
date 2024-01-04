@@ -14,8 +14,13 @@
   %>
 
   <%= f.input :size, collection: BrickCategory.distinct.pluck(:size),
-    input_html: { data: {brick_categories_target: "size"} },
+    input_html: { data: {brick_categories_target: "size", action: "change->brick-categories#revealType"} },
     wrapper_html: { data: {brick_categories_target: "size_wrapper"}, class: "d-none"}
+  %>
+
+  <%= f.input :category_type, collection: BrickCategory.distinct.pluck(:category_type),
+    input_html: { data: {brick_categories_target: "category_type"} },
+    wrapper_html: { data: {brick_categories_target: "category_type_wrapper"}, class: "d-none"}
   %>
 
 </div>

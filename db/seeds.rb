@@ -21,13 +21,9 @@ puts "Creating #{brick_categories_data.length} categories..."
 
 brick_categories_data.each do |category_data|
   category_data['subcategories'].each do |sub_category_data|
-    if sub_category_data['sizes']
-      sub_category_data['sizes'].each do |size|
-        BrickCategory.create(category: category_data['category'], sub_category: sub_category_data['name'], size: size, category_type: 'Size')
-      end
-    elsif sub_category_data['types']
+    sub_category_data['sizes'].each do |size|
       sub_category_data['types'].each do |type|
-        BrickCategory.create(category: category_data['category'], sub_category: sub_category_data['name'], size: type, category_type: 'Type')
+        BrickCategory.create(category: category_data['category'], sub_category: sub_category_data['name'], size: size, category_type: type)
       end
     end
   end
