@@ -6,7 +6,7 @@ class BricksController < ApplicationController
     @bricks = Brick.order(name: :asc, colour: :asc)
     # take user input to display bricks according to their search
     if params[:query].present?
-      sql_subquery = "name ILIKE :query OR colour ILIKE :query"
+      sql_subquery = "name ILIKE :query OR colour ILIKE :query OR category ILIKE :query OR sub_category ILIKE :query OR size ILIKE :query OR category_type ILIKE :query"
       @bricks = @bricks.where(sql_subquery, query: "%#{params[:query]}%")
     end
 
