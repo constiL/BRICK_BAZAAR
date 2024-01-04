@@ -1,0 +1,162 @@
+[
+  {
+    "category": "Bricks",
+    "subcategories": [
+      {
+        "name": "Basic Bricks",
+        "sizes": ["1x1", "1x2", "1x3", "1x4", "1x6", "1x8", "2x2", "2x3", "2x4", "2x6", "2x8", "2x10"],
+        "types": ["Standard", "Reinforced"]
+      },
+      {
+        "name": "Modified Bricks",
+        "sizes": ["default"],
+        "types": ["Bricks with studs on sides", "Hinge bricks", "Bricks with holes", "Curved bricks"]
+      },
+      {
+        "name": "Decorative Elements",
+        "sizes": ["default"],
+        "types": ["Bricks with faces", "Bricks with patterns", "Bricks with textures", "Bricks with grooves"]
+      },
+      {
+        "name": "SNOT (Studs Not On Top) Bricks",
+        "sizes": ["default"],
+        "types": ["Bricks with stud notches on sides", "Bricks with studs on front"]
+      }
+    ]
+  },
+  {
+    "category": "Plates",
+    "subcategories": [
+      {
+        "name": "Basic Plates",
+        "sizes": ["1x2", "1x4", "1x6", "1x8", "2x2", "2x3", "2x4", "2x6", "2x8", "4x4", "4x6", "4x8", "6x6", "6x8", "6x10", "8x8", "8x16"],
+        "types": ["Standard", "Thin"]
+      },
+      {
+        "name": "Modified Plates",
+        "sizes": ["default"],
+        "types": ["Plates with clips", "Plates with handles", "Plates with angled edges", "Jumper plates"]
+      },
+      {
+        "name": "Baseplates",
+        "sizes": ["16x16", "32x32", "48x48", "Road baseplates", "Other large-format plates"],
+        "types": ["Standard baseplates", "Raised baseplates"]
+      }
+    ]
+  },
+  {
+    "category": "Tiles",
+    "subcategories": [
+      {
+        "name": "Smooth Tiles",
+        "sizes": ["1x1", "1x2", "1x3", "1x4", "1x6", "1x8", "2x2", "2x3", "2x4"],
+        "types": ["Standard", "Finishing"]
+      },
+      {
+        "name": "Printed Tiles",
+        "sizes": ["default"],
+        "types": ["Tiles with letters", "Tiles with numbers", "Control panels", "Decorative patterns"]
+      },
+      {
+        "name": "Modified Tiles",
+        "sizes": ["default"],
+        "types": ["Tiles with clips", "Tiles with studs", "Rounded tiles"]
+      }
+    ]
+  },
+  {
+    "category": "Slopes",
+    "subcategories": [
+      {
+        "name": "Regular Slopes",
+        "sizes": ["Slope 30° 1x1x2/3", "Slope 45° 2x1", "Slope 45° 2x2", "Slope 33° 3x1", "Slope 25° 1x3"],
+        "types": ["Standard", "Extended"]
+      },
+      {
+        "name": "Curved Slopes",
+        "sizes": ["Curved Slope 1x2", "Curved Slope 2x2", "Curved Slope 1x4"],
+        "types": ["Standard curve", "Gentle curve"]
+      },
+      {
+        "name": "Inverted Slopes",
+        "sizes": ["Inverted Slope 30° 1x1x2/3", "Inverted Slope 45° 2x2", "Inverted Slope 33° 3x1"],
+        "types": ["Standard inverted", "Extended inverted"]
+      }
+    ]
+  },
+  {
+    "category": "Technic",
+    "subcategories": [
+      {
+        "name": "Beams",
+        "sizes": ["1 stud", "3 studs", "5 studs", "7 studs", "9 studs", "11 studs", "13 studs", "15 studs"],
+        "types": ["Standard beams", "Thin beams"]
+      },
+      {
+        "name": "Gears",
+        "sizes": ["default"],
+        "types": ["8-tooth", "12-tooth", "16-tooth", "24-tooth", "40-tooth gears", "Worm gears"]
+      },
+      {
+        "name": "Connectors",
+        "sizes": ["default"],
+        "types": ["Axle connectors", "Pin connectors", "Angle connectors", "Flexible connectors"]
+      },
+      {
+        "name": "Pins & Axles",
+        "sizes": ["Axles from 2 to 12 studs length"],
+        "types": ["Friction pins", "Pin with bush", "Smooth pins", "Extended axles"]
+      }
+    ]
+  },
+  {
+    "category": "Minifigures/Accessories",
+    "subcategories": [
+      {
+        "name": "Minifigures",
+        "sizes": ["default"],
+        "types": ["Standard Characters", "Themed Characters", "Animal Figures", "Special Edition Figures"]
+      },
+      {
+        "name": "Bodywear",
+        "sizes": ["default"],
+        "types": ["Armor", "Capes", "Wings", "Life vests"]
+      },
+      {
+        "name": "Headgear",
+        "sizes": ["default"],
+        "types": ["Helmets", "Hats", "Hoods", "Hairpieces"]
+      },
+      {
+        "name": "Tools and Utensils",
+        "sizes": ["default"],
+        "types": ["Weapons", "Tools", "Cups", "Bags", "Sports equipment"]
+      }
+    ]
+  },
+  {
+    "category": "Specialty Parts",
+    "subcategories": [
+      {
+        "name": "Windows and Doors",
+        "sizes": ["default"],
+        "types": ["Window frames", "Door frames", "Shuttered windows", "Glass panels"]
+      },
+      {
+        "name": "Wheels and Tires",
+        "sizes": ["Various diameters ranging from small (e.g., car wheels) to large (e.g., truck wheels)"],
+        "types": ["Standard wheels", "Heavy-duty wheels"]
+      },
+      {
+        "name": "Plants and Animals",
+        "sizes": ["default"],
+        "types": ["Trees", "Flowers", "Bushes", "Various animal figures"]
+      },
+      {
+        "name": "Vehicle Elements",
+        "sizes": ["default"],
+        "types": ["Car bases", "Airplane wings", "Boat hulls", "Propellers"]
+      }
+    ]
+  }
+]

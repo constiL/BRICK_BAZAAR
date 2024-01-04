@@ -16,7 +16,7 @@ class BuyRequest < ApplicationRecord
 
   private
 
-  #custom validation to make sure that user can't create a buy request with for his own bricks
+  #custom validation to make sure that user can't create a buy request for his own bricks
   def cannot_buy_own_brick
     if user && brick && user.id == brick.user_id
       errors.add(:base, "Can buy your own brick")

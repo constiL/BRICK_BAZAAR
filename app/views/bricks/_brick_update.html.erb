@@ -12,12 +12,32 @@
         </button>
       </div>
 
-    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ", action: "submit->edit-brick#update"}} do |f|%>
-      <%= f.input :name %>
+  <div data-controller="brick-categories">
+    <%= simple_form_for brick, html: {  class: brick.errors.any? ? "" : "d-none",  data: { edit_brick_target: "form ",
+      action: "submit->edit-brick#update"}} do |f|
+      %>
+    <%= f.input :name %>
+    <%= f.input :category, collection: BrickCategory.order(:category).distinct.pluck(:category), prompt: "select category",
+      prompt: "Select a category",
+      input_html: { data: {brick_categories_target: "category", action: "change->brick-categories#revealSub"}}
+    %>
+    <%= f.input :sub_category, collection: BrickCategory.order(:sub_category).distinct.pluck(:sub_category), prompt: "select sub category",
+      input_html: { data: {brick_categories_target: "sub_category", action: "change->brick-categories#revealSize"} },
+      wrapper_html: { data: {brick_categories_target: "sub_category_wrapper"}}
+    %>
+    <%= f.input :size, collection: BrickCategory.order(:size).distinct.pluck(:size), prompt: "select size",
+      input_html: { data: {brick_categories_target: "size", action: "change->brick-categories#revealType"} },
+      wrapper_html: { data: {brick_categories_target: "size_wrapper"}}
+    %>
+    <%= f.input :category_type, collection: BrickCategory.order(:category_type).distinct.pluck(:category_type), prompt: "select type",
+      input_html: { data: {brick_categories_target: "category_type"} },
+      wrapper_html: { data: {brick_categories_target: "category_type_wrapper"}}
+    %>
       <%= f.input :description %>
       <%= f.input :address,
-        input_html: { id: "brick_address", data: {address_autocomplete_target: "address"}, class: "d-none"},
-        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+        input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
+        wrapper_html: {data: {controller: "address-autocomplete",
+        address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
       %>
       <%= f.input :price %>
       <%= f.input :brick_condition, collection: (1..5) %>
@@ -28,4 +48,5 @@
     <%= link_to "delete this brick", brick_path(brick),
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
       class:"btn border" %>
+  </div>
 </div>

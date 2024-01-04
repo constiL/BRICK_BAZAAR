@@ -29,10 +29,12 @@ class BricksController < ApplicationController
 
   def create
     @brick = Brick.new(brick_params)
+    @brick_category = BrickCategory.new
     @brick.user = current_user
     if @brick.save
       redirect_to @brick, notice: "Brick was succesfully added to the market"
     else
+      logger.debug @brick.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -81,6 +83,6 @@ class BricksController < ApplicationController
   end
 
   def brick_params
-    params.require(:brick).permit(:name, :description, :address, :price, :brick_condition, :colour, :photo,)
+    params.require(:brick).permit(:name, :description, :address, :price, :brick_condition, :colour, :photo, :category, :sub_category, :size, :category_type)
   end
 end
