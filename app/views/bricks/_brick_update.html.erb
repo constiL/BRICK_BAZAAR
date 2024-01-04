@@ -12,12 +12,27 @@
         </button>
       </div>
 
-    <%= simple_form_for brick, html: { class: brick.errors.any? ? "" : "d-none", data: { edit_brick_target: "form ",
+  <div data-controller="brick-categories">
+    <%= simple_form_for brick, html: {  class: brick.errors.any? ? "" : "d-none",  data: { edit_brick_target: "form ",
       action: "submit->edit-brick#update"}} do |f|
       %>
-      <%= f.input :category, collection: BrickType.distinct.pluck(:category), prompt: "Select a Category" %>
-      <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category), prompt: "Select a Sub Category" %>
-      <%= f.input :size, collection: BrickType.distinct.pluck(:size), prompt: "Select a Size" %>
+    <%= f.input :name %>
+    <%= f.input :category, collection: BrickCategory.distinct.pluck(:category), prompt: "select category",
+      prompt: "Select a category",
+      input_html: { data: {brick_categories_target: "category"}}
+    %>
+    <%= f.input :sub_category, collection: BrickCategory.distinct.pluck(:sub_category), prompt: "select sub category",
+      input_html: { data: {brick_categories_target: "sub_category"} },
+      wrapper_html: { data: {brick_categories_target: "sub_category_wrapper"}}
+    %>
+    <%= f.input :size, collection: BrickCategory.distinct.pluck(:size), prompt: "select size",
+      input_html: { data: {brick_categories_target: "size"} },
+      wrapper_html: { data: {brick_categories_target: "size_wrapper"}}
+    %>
+    <%= f.input :category_type, collection: BrickCategory.distinct.pluck(:category_type), prompt: "select type",
+      input_html: { data: {brick_categories_target: "category_type"} },
+      wrapper_html: { data: {brick_categories_target: "category_type_wrapper"}}
+    %>
       <%= f.input :description %>
       <%= f.input :address,
         input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
@@ -33,4 +48,5 @@
     <%= link_to "delete this brick", brick_path(brick),
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
       class:"btn border" %>
+  </div>
 </div>

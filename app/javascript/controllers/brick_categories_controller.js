@@ -5,11 +5,16 @@ export default class extends Controller {
   static targets = ["category", "sub_category", "sub_category_wrapper", "size", "size_wrapper", "category_type", "category_type_wrapper"]
 
   connect() {
-    console.log(this.categoryTarget, this.sub_categoryTarget)
   }
 
   revealSub() {
     const category = this.categoryTarget.value;
+    this.resetDropdown(this.sub_categoryTarget, "sub category");
+    this.sub_category_wrapperTarget.classList.add("d-none");
+    this.resetDropdown(this.sizeTarget, "size");
+    this.size_wrapperTarget.classList.add("d-none");
+    this.resetDropdown(this.category_typeTarget, "type");
+    this.category_type_wrapperTarget.classList.add("d-none");
     const fieldLabel = "sub category";
     fetch(`/brick_categories/filter_sub_category?category=${category}`)
       .then(response => response.json())
@@ -25,6 +30,10 @@ export default class extends Controller {
   revealSize() {
     const category = this.categoryTarget.value;
     const sub_category = this.sub_categoryTarget.value;
+    this.resetDropdown(this.sizeTarget, "size");
+    this.size_wrapperTarget.classList.add("d-none");
+    this.resetDropdown(this.category_typeTarget, "type");
+    this.category_type_wrapperTarget.classList.add("d-none");
     const fieldLabel = "size"
     fetch(`/brick_categories/filter_size?category=${category}&sub_category=${sub_category}`)
       .then(response => response.json())
@@ -41,6 +50,8 @@ export default class extends Controller {
     const category = this.categoryTarget.value;
     const sub_category = this.sub_categoryTarget.value;
     const size = this.sizeTarget.value;
+    this.resetDropdown(this.category_typeTarget, "type");
+    this.category_type_wrapperTarget.classList.add("d-none");
     const fieldLabel = "type"
     fetch(`/brick_categories/filter_category_type?category=${category}&sub_category=${sub_category}&size=${size}`)
       .then(response => response.json())
@@ -67,5 +78,14 @@ export default class extends Controller {
       opt.text = option;
       dropdown.appendChild(opt);
     });
+  }
+
+  resetDropdown(dropdown, fieldLabel) {
+    dropdown.innerHTML = "";
+
+    const promptOption = document.createElement('option');
+    promptOption.value = "";
+    promptOption.text = `Select a ${fieldLabel}`;
+    dropdown.appendChild(promptOption);
   }
 }

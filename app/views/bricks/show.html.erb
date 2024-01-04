@@ -2,8 +2,10 @@
 
 <%# displaying all the brick attributes in unlisted form %>
 <ul>
-  <li>Type: <%= @brick.category.singularize %></li>
+  <li>Category: <%= @brick.category %></li>
+  <li>Sub Category: <%= @brick.sub_category %></li>
   <li>Size: <%= @brick.size %></li>
+  <li>Type: <%= @brick.category_type %></li>
   <li>Description: <%= @brick.description %></li>
   <li>Address: <%= @brick.address %></li>
   <li>Price: <%= @brick.price %></li>
