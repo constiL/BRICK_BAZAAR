@@ -4,7 +4,7 @@ class Brick < ApplicationRecord
   has_one_attached :photo
   belongs_to :user
 
-  validates :name, :description, :address, :price, :brick_condition, :colour,
+  validates :name, :description, :address, :price, :brick_condition, :colour, :size, :category, :sub_category, :category_type,
     presence: true
   validates :name, length: { minimum: 5 }
   validates :price, numericality: { greater_than_or_equal_to: 1, only_integer: true }

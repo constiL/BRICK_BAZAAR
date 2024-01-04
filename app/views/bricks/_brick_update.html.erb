@@ -17,19 +17,19 @@
       action: "submit->edit-brick#update"}} do |f|
       %>
     <%= f.input :name %>
-    <%= f.input :category, collection: BrickCategory.distinct.pluck(:category), prompt: "select category",
+    <%= f.input :category, collection: BrickCategory.order(:category).distinct.pluck(:category), prompt: "select category",
       prompt: "Select a category",
-      input_html: { data: {brick_categories_target: "category"}}
+      input_html: { data: {brick_categories_target: "category", action: "change->brick-categories#revealSub"}}
     %>
-    <%= f.input :sub_category, collection: BrickCategory.distinct.pluck(:sub_category), prompt: "select sub category",
-      input_html: { data: {brick_categories_target: "sub_category"} },
+    <%= f.input :sub_category, collection: BrickCategory.order(:sub_category).distinct.pluck(:sub_category), prompt: "select sub category",
+      input_html: { data: {brick_categories_target: "sub_category", action: "change->brick-categories#revealSize"} },
       wrapper_html: { data: {brick_categories_target: "sub_category_wrapper"}}
     %>
-    <%= f.input :size, collection: BrickCategory.distinct.pluck(:size), prompt: "select size",
-      input_html: { data: {brick_categories_target: "size"} },
+    <%= f.input :size, collection: BrickCategory.order(:size).distinct.pluck(:size), prompt: "select size",
+      input_html: { data: {brick_categories_target: "size", action: "change->brick-categories#revealType"} },
       wrapper_html: { data: {brick_categories_target: "size_wrapper"}}
     %>
-    <%= f.input :category_type, collection: BrickCategory.distinct.pluck(:category_type), prompt: "select type",
+    <%= f.input :category_type, collection: BrickCategory.order(:category_type).distinct.pluck(:category_type), prompt: "select type",
       input_html: { data: {brick_categories_target: "category_type"} },
       wrapper_html: { data: {brick_categories_target: "category_type_wrapper"}}
     %>

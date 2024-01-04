@@ -2,19 +2,19 @@
 <div data-controller="brick-categories">
   <%= simple_form_for(@brick) do |f| %>
     <%= f.input :name %>
-    <%= f.input :category, collection: BrickCategory.distinct.pluck(:category),
+    <%= f.input :category, collection: BrickCategory.order(:category).distinct.pluck(:category),
       prompt: "Select a category",
       input_html: { data: {brick_categories_target: "category", action: "change->brick-categories#revealSub"}}
     %>
-    <%= f.input :sub_category, collection: BrickCategory.distinct.pluck(:sub_category),
+    <%= f.input :sub_category, collection: BrickCategory.order(:sub_category).distinct.pluck(:sub_category),
       input_html: { data: {brick_categories_target: "sub_category", action: "change->brick-categories#revealSize"} },
       wrapper_html: { data: {brick_categories_target: "sub_category_wrapper"}, class: "d-none"}
     %>
-    <%= f.input :size, collection: BrickCategory.distinct.pluck(:size),
+    <%= f.input :size, collection: BrickCategory.order(:size).distinct.pluck(:size),
       input_html: { data: {brick_categories_target: "size", action: "change->brick-categories#revealType"} },
       wrapper_html: { data: {brick_categories_target: "size_wrapper"}, class: "d-none"}
     %>
-    <%= f.input :category_type, collection: BrickCategory.distinct.pluck(:category_type),
+    <%= f.input :category_type, collection: BrickCategory.order(:category_type).distinct.pluck(:category_type),
       input_html: { data: {brick_categories_target: "category_type"} },
       wrapper_html: { data: {brick_categories_target: "category_type_wrapper"}, class: "d-none"}
     %>
