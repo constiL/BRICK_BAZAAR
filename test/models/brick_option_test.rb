@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BrickTypeTest < ActiveSupport::TestCase
+class BrickOptionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

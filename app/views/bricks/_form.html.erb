@@ -1,32 +1,25 @@
 <%# partial for creating a brick with image upload %>
 <%= simple_form_for(@brick) do |f| %>
 
-<div class="brick-type-options" data-controller="brick-type" >
+<div data-controller="brick-categories">
 
-  <%= f.input :category, collection: BrickType.distinct.pluck(:category),
-    prompt: "Select a Category",
-    input_html: { data: {brick_type_target: "category", action: "change->brick-type#revealSub"}}
+  <%= f.input :category, collection: BrickCategory.distinct.pluck(:category),
+    prompt: "Select a category",
+    input_html: { data: {brick_categories_target: "category", action: "change->brick-categories#revealSub"}}
   %>
 
-  <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category),
-    prompt: "Select a Sub Category",
-    input_html: { data: {brick_type_target: "sub_category", action: "change->brick-type#revealSize"} },
-    wrapper_html: { data: {brick_type_target: "sub_category"}, class: "d-none"}
+  <%= f.input :sub_category, collection: BrickCategory.distinct.pluck(:sub_category),
+    input_html: { data: {brick_categories_target: "sub_category", action: "change->brick-categories#revealSize"} },
+    wrapper_html: { data: {brick_categories_target: "sub_category_wrapper"}, class: "d-none"}
   %>
 
-  <%= f.input :size, collection: BrickType.distinct.pluck(:size),
-    prompt: "Select a size",
-    input_html: { data: {brick_type_target: "size"} },
-    wrapper_html: { data: {brick_type_target: "size"}, class: "d-none"}
+  <%= f.input :size, collection: BrickCategory.distinct.pluck(:size),
+    input_html: { data: {brick_categories_target: "size"} },
+    wrapper_html: { data: {brick_categories_target: "size_wrapper"}, class: "d-none"}
   %>
 
 </div>
 
-
-  <div class="d-none">
-    <%= f.input :name, collection: BrickType.distinct.pluck(:name),
-      prompt: "Select a type" %>
-  </div>
 
 
   <%= f.input :description %>

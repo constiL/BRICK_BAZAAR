@@ -18,7 +18,6 @@
       <%= f.input :category, collection: BrickType.distinct.pluck(:category), prompt: "Select a Category" %>
       <%= f.input :sub_category, collection: BrickType.distinct.pluck(:sub_category), prompt: "Select a Sub Category" %>
       <%= f.input :size, collection: BrickType.distinct.pluck(:size), prompt: "Select a Size" %>
-      <%= f.input :name, collection: BrickType.distinct.pluck(:name), prompt: "Select a type" %>
       <%= f.input :description %>
       <%= f.input :address,
         input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},

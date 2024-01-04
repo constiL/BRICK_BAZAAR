@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BrickTypesControllerTest < ActionDispatch::IntegrationTest
+class BrickCategoryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
