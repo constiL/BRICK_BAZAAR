@@ -26,7 +26,7 @@
     %>
     <%= f.input :price %>
     <%= f.input :brick_condition, collection: (1..5) %>
-    <%= f.input :colour, collection: %w(red blue yellow green orange grey) %>
+    <%= f.input :colour, collection: %w(Red Blue Yellow Green Orange Grey) %>
     <%= f.input :photo, label: "Upload a picture of your brick", as: :file %>
     <%= f.submit "Add Brick", class: "btn border" %>
   <% end %>
